@@ -1,9 +1,15 @@
 package com.example.thymeleafstudy.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/study")
@@ -19,5 +25,30 @@ public class StudyController {
     public String textUnescaped(Model model) {
         model.addAttribute("data", "Hello <b>Spring!</b>");
         return "study/text-unescaped";
+    }
+
+    @GetMapping("/variable")
+    public String variable(Model model) {
+        User userA = new User("userA", 119);
+        User userB = new User("userA", 112);
+
+        List<User> users = List.of(userA, userB);
+
+        HashMap<String, User> userMap = new HashMap<>();
+        userMap.put("userA", userA);
+        userMap.put("userB", userB);
+
+        model.addAttribute("user", userA);
+        model.addAttribute("users", users);
+        model.addAttribute("userMap", userMap);
+
+        return "study/variable";
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class User {
+        private String name;
+        private int age;
     }
 }
