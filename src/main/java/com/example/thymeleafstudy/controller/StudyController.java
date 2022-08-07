@@ -2,11 +2,13 @@ package com.example.thymeleafstudy.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,19 @@ public class StudyController {
         model.addAttribute("userMap", userMap);
 
         return "study/variable";
+    }
+
+    @GetMapping("/basic-objects")
+    public String basicObjects(HttpSession session) {
+        session.setAttribute("sessionData", "Session");
+        return "study/basic-objects";
+    }
+
+    @Component("helloBean")
+    static class helloBean {
+        public String hello(String data) {
+            return "Hello " + data;
+        }
     }
 
     @Data
