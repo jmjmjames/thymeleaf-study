@@ -81,6 +81,13 @@ public class StudyController {
         return "study/literal";
     }
 
+    @GetMapping("/operation")
+    public String operation(Model model) {
+        model.addAttribute("nullData", null);
+        model.addAttribute("data", "Spring!");
+        return "study/operation";
+    }
+
     @Data
     @AllArgsConstructor
     static class User {
