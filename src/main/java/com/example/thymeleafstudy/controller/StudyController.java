@@ -75,6 +75,12 @@ public class StudyController {
         return "study/link";
     }
 
+    @GetMapping("/literal")
+    public String literal(Model model) {
+        model.addAttribute("data", "Hello Spring!");
+        return "study/literal";
+    }
+
     @Data
     @AllArgsConstructor
     static class User {
