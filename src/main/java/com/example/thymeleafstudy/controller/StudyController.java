@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,13 @@ public class StudyController {
         public String hello(String data) {
             return "Hello " + data;
         }
+    }
+
+    @GetMapping("/date")
+    public String date(Model model) {
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "study/date";
     }
 
     @Data
